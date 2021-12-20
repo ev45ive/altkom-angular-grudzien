@@ -10,7 +10,7 @@ export class PlaylistFormComponent implements OnInit {
 
   playlist = {
     id:'123',
-    name:'Best playlist',
+    name:'Best playlist form',
     public: true,
     description: 'my <3 playlist'
   }

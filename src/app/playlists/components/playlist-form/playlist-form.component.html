@@ -6,6 +6,7 @@
     name="playlist_name"
     id="playlist_name"
     placeholder="Name"
+    
     [value]="playlist.name"
     (input)="playlist.name = $any($event.target).value"
     #nameRef
