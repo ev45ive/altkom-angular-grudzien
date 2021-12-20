@@ -40,3 +40,34 @@ ng new myapp --directory "."  --package-manager npm --routing --strict --style s
 
 git config --global user.email "mojemail@mojadomena.com"
 git config --global user.name "Zbyszek Xowski"
+
+code ~/.gitconfig
+
+[user]
+	email = email@email.com
+	name = Imie Nawzisko
+
+## Serwer
+ng serve 
+ng s 
+ng s --port 8080
+
+ng s -o 
+
+
+## Devtools
+https://angular.io/guide/devtools
+
+https://chrome.google.com/webstore/detail/angular-devtools/ienfalfjdbdpebioblfackkekamfmbnh
+
+http://localhost:4200/ 
+
+## Counter Component
+
+ng generate component mojkomonent
+ng g c --help
+
+ng g c counter -s -t 
+CREATE src/app/counter/counter.component.spec.ts (633 bytes)
+CREATE src/app/counter/counter.component.ts (268 bytes)
+UPDATE src/app/app.module.ts (593 bytes)
