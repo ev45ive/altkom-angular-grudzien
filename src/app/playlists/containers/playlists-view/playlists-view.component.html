@@ -6,10 +6,15 @@
   </div>
 
   <div class="col">
-    <app-playlist-details></app-playlist-details>
+    <div [hidden]="mode !== 'details'">
+      <app-playlist-details></app-playlist-details>
+      <button class="btn btn-info">Edit</button>
+    </div>
 
     <hr />
 
-    <app-playlist-form></app-playlist-form>
+    <div [hidden]="mode !== 'edit'">
+      <app-playlist-form></app-playlist-form>
+    </div>
   </div>
 </div>
