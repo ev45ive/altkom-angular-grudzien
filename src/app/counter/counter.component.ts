@@ -13,19 +13,18 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 export class CounterComponent implements OnInit {
 
   time = (new Date()).toLocaleTimeString()
-  
-  constructor(private cdr: ChangeDetectorRef) {
-    cdr.detach()
-  }
-  
-  ngOnInit(): void {
-    this.cdr.detectChanges()
-    
-    setInterval(()=>{
-      this.time = (new Date()).toLocaleTimeString()
-      this.cdr.detectChanges()
 
-    },1000)
+  constructor(private cdr: ChangeDetectorRef) {
+    // cdr.detach()
+  }
+
+  ngOnInit(): void {
+    // this.cdr.detectChanges()
+    setInterval(() => {
+      this.time = (new Date()).toLocaleTimeString()
+      //   // this.cdr.detectChanges()
+    }, 1000)
+    debugger
   }
 
 }
