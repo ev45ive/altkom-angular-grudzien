@@ -8,13 +8,14 @@
   <div class="col">
     <div [hidden]="mode !== 'details'">
       <app-playlist-details></app-playlist-details>
-      <button class="btn btn-info">Edit</button>
+      <button class="btn btn-info" (click)="editMode()">Edit</button>
     </div>
-
+    
     <hr />
-
+    
     <div [hidden]="mode !== 'edit'">
       <app-playlist-form></app-playlist-form>
+      <button class="btn btn-danger" (click)="cancel()">Cancel</button>
     </div>
   </div>
 </div>
