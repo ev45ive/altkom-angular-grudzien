@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
+import { PlaylistsModule } from './playlists/playlists.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { CounterComponent } from './counter/counter.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PlaylistsModule
   ],
   providers: [],
   bootstrap: [

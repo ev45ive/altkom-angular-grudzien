@@ -16,6 +16,13 @@ code -v
 
 Google Chrome	96.0.4664.110
 
+## VS Code extensions
+https://marketplace.visualstudio.com/items?itemName=Angular.ng-template
+
+https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode
+
+https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
+
 ## Angular CLI 
 
 npm install --global @angular/cli
@@ -85,4 +92,5 @@ ng g c playlists/containers/playlists-view
 ng g c playlists/components/playlist-list
 ng g c playlists/components/playlist-details
 ng g c playlists/components/playlist-form
+
 
