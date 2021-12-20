@@ -78,4 +78,11 @@ https://github.com/angular/angular/tree/master/packages/zone.js
 
 ## Playlist module
 
-ng g m 
+ng g m playlists -m app --routing
+
+ng g c playlists/containers/playlists-view
+
+ng g c playlists/components/playlist-list
+ng g c playlists/components/playlist-details
+ng g c playlists/components/playlist-form
+
