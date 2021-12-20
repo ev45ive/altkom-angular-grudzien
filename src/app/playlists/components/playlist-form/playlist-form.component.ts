@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistFormComponent implements OnInit {
 
+  playlist = {
+    id:'123',
+    name:'Best playlist',
+    public: true,
+    description: 'my <3 playlist'
+  }
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
