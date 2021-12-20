@@ -7,9 +7,16 @@
     id="playlist_name"
     placeholder="Name"
     [value]="playlist.name"
+    (input)="playlist.name = $any($event.target).value"
+    #nameRef
   />
+  
+    {{ nameRef.value }}
+    {{ nameRef.value.length }} 
+ 
+
   <small id="counter" class="form-text text-muted float-end">
-    {{playlist.name.length}} / 100
+    {{ playlist.name.length }} / 100
   </small>
 </div>
 
@@ -32,5 +39,8 @@
     id="playlist_description"
     rows="3"
     [value]="playlist.description"
+    (input)="playlist.description = $any($event.target).value"
   ></textarea>
 </div>
+
+<button class="btn btn-success">Save</button>
