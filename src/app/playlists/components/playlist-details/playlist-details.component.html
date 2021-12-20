@@ -1,13 +1,35 @@
-
 <!-- dl>(dt{Name}+dd{costam})*3 -->
 
-<dl>
+<dl [title]="playlist.name" [attr.data-id]="'playlist_' + playlist.id">
+  <!--  -->
   <dt>Name:</dt>
-  <dd>Moja playlista</dd>
+  <dd>{{ playlist.name }}</dd>
 
   <dt>Public:</dt>
-  <dd>Yes</dd>
+  <!-- <dd [style.color]="playlist.public ? 'green' : 'red'">
+    {{ playlist.public ? "Yes" : "No" }}
+  </dd> -->
+  <dd
+    [ngStyle]="{
+      color: playlist.public ? 'green' : 'red',
+      borderBottom: '1px solid ' + playlist.public ? 'green' : 'red'
+    }"
+  >
+    {{ playlist.public ? "Yes" : "No" }}
+  </dd>
+  
+  <dd
+    [class.pl-public]="playlist.public"
+    [class.pl-private]="playlist.public === false"
+  >
+    {{ playlist.public ? "Yes" : "No" }}
+  </dd>
+
+  <!-- <dd>{{ 1 + 2 }}</dd> -->
+  <!-- <dd>{{ "Yes " }}</dd> -->
+  <!-- Green | Red -->
+  <!-- <dd>{{ if(){}else{} }}</dd> -->
 
   <dt>Description</dt>
-  <dd>the best &lt;3</dd>
+  <dd>{{ playlist.description }}</dd>
 </dl>

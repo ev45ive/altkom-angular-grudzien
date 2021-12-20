@@ -10,7 +10,7 @@ export class PlaylistDetailsComponent implements OnInit {
   playlist = {
     id:'123',
     name:'Best playlist',
-    public: false,
+    public: true,
     description: 'my <3 playlist'
   }
 
