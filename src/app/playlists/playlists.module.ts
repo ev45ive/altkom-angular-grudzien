@@ -19,8 +19,8 @@ import { PlaylistFormComponent } from './components/playlist-form/playlist-form.
     CommonModule,
     PlaylistsRoutingModule
   ],
-  exports: [
-    PlaylistsViewComponent
-  ]
+  // exports: [
+  //   PlaylistsViewComponent
+  // ]
 })
 export class PlaylistsModule { }
