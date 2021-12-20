@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// enum Modes { details, form }
+enum Modes { details = 'details', form = 'form' }
 
 @Component({
   selector: 'app-playlists-view',
@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class PlaylistsViewComponent implements OnInit {
   // Modes = Modes
   // mode = Modes.details
+  // isEditMode() { return this.mode === Modes.details }
 
   mode: 'details' | 'edit' = 'details'
 
