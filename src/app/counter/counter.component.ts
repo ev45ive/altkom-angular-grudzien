@@ -22,9 +22,9 @@ export class CounterComponent implements OnInit {
     // this.cdr.detectChanges()
     setInterval(() => {
       this.time = (new Date()).toLocaleTimeString()
-      //   // this.cdr.detectChanges()
+      this.cdr.detectChanges()
     }, 1000)
-    debugger
+
   }
 
 }
