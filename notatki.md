@@ -1,4 +1,16 @@
+# GIT 
+git clone https://ev45ive@bitbucket.org/ev45ive/altkom-angular-grudzien.git altkom-angular-grudzien
+cd altkom-angular-grudzien
+npm install
+npm run start
 
+## GIT Update
+git pull --set-upstream origin master
+
+git stash -u 
+git pull
+
+## Instalacje
 https://nodejs.org/en/
 node -v 
 v16.13.1
