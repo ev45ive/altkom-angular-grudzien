@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-counter, div.counter',
+  selector: 'app-counter, tr[appCounter], li[appCounter]',
   template: `
     <div>
       counter works!
@@ -13,10 +13,19 @@ import { Component, OnInit } from '@angular/core';
 export class CounterComponent implements OnInit {
 
   time = (new Date()).toLocaleTimeString()
-
-  constructor() { }
-
+  
+  constructor(private cdr: ChangeDetectorRef) {
+    cdr.detach()
+  }
+  
   ngOnInit(): void {
+    this.cdr.detectChanges()
+    
+    setInterval(()=>{
+      this.time = (new Date()).toLocaleTimeString()
+      this.cdr.detectChanges()
+
+    },1000)
   }
 
 }

@@ -8,14 +8,17 @@ import { CounterComponent } from './counter/counter.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    // CounterComponent,
+    AppComponent,
+  ]
 })
 export class AppModule {
 
