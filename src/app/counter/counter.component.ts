@@ -7,7 +7,12 @@ import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
       <h3>{{time}}</h3>
     </div>
   `,
-  styles: []
+  styles: [`
+  
+      h1, h3 {
+        color: darkgray;
+      }
+  `]
 })
 export class CounterComponent implements OnInit {
 

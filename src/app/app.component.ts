@@ -10,22 +10,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class AppComponent {
   title = 'Angular !!';
 
-  alert() {
-    console.log('Alert')
-
-    // NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. 
-    //  Previous value: 'Angular !!'. Current value: 'Zmieniono'.. Find more at https://angular.io/errors/NG0100
-    // this.title = 'Zmieniono'
-
-
-    // Change After Rendering!!
-    // if (this.title !== 'Zmieniono') {
-    //   setTimeout(() => {
-    //     this.title = 'Zmieniono'
-    //   })
-    // }
-  }
-
 }
 
 

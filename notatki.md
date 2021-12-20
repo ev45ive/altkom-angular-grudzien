@@ -74,3 +74,8 @@ UPDATE src/app/app.module.ts (593 bytes)
 
 
 https://github.com/angular/angular/tree/master/packages/zone.js
+
+
+## Playlist module
+
+ng g m 
