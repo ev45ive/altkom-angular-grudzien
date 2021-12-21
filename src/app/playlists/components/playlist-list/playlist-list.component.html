@@ -1,12 +1,29 @@
 <!-- .list-group>a[href=#].list-group-item.list-group-item-action*3{$. Playlist $$} -->
 
 <div class="list-group">
-  <ng-template let-xxx="$implicit" ngFor [ngForOf]="playlists">
+  <!-- <ng-template let-xxx="$implicit" ngFor [ngForOf]="playlists" let-i="index">
     <a href="#" class="list-group-item list-group-item-action">
-      1. {{ xxx.name }}
+      {{ i + 1 }}. {{ xxx.name }}
+    </a>
+  </ng-template> -->
+
+  <ng-template let-playlist ngFor [ngForOf]="playlists" let-i="index">
+    <a href="#" class="list-group-item list-group-item-action">
+      {{ i + 1 }}. {{ playlist.name }}
     </a>
   </ng-template>
+
+  <a
+    href="#"
+    class="list-group-item list-group-item-action"
+    *ngFor="let playlist of playlists; let i = index"
+  >
+    {{ i + 1 }}. {{ playlist.name }}
+  </a>
 </div>
+
+<!-- <div [ngIf]="1>2; [ngIfElse] plackiREf"></div> -->
+<!-- <div *ngIf="1>2; else plackiREf"></div> -->
 
 <!-- <ng-template ngForOf="rows">
   <ng-template ngForOf="cols"> 
