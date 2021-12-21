@@ -52,12 +52,18 @@ export class PlaylistsViewComponent implements OnInit {
     console.log('save playlist!');
 
   }
-  
+
   ngOnInit(): void {
     // this.draft = this.playlist
     // this.draft = Object.assign({}, this.playlist)
     // this.draft = { ...this.playlist, tracks:[...this.playlist.tracks] }
     // this.draft = JSON.parse(JSON.stringify(this.playlist))
+  }
+  
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    
     console.log('parent init', (window as any).playlist_name);
   }
 }
