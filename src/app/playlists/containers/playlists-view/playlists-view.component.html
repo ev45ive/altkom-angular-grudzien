@@ -3,18 +3,24 @@
     <app-playlist-list></app-playlist-list>
   </div>
 
-  <div class="col">
-    <ng-container *ngIf="mode === 'details'">
+  <div class="col" ngSwitch="mode">
+
+    <ng-container ngSwitchCase="details">
       <app-playlist-details></app-playlist-details>
       <button class="btn btn-info" (click)="editMode()">Edit</button>
     </ng-container>
 
-    <ng-container *ngIf="mode === 'edit'">
+    <ng-container  ngSwitchCase="edit">
       <app-playlist-form></app-playlist-form>
       <button class="btn btn-danger" (click)="cancel()">Cancel</button>
     </ng-container>
   </div>
 </div>
+
+<!-- 
+<ng-template *ngIf="true" [ngIf]="true">
+  true
+</ng-template> -->
 
 <!-- <dl>
   <ng-container *ngIf="true">
