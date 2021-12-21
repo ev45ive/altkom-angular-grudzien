@@ -1,27 +1,29 @@
 <div class="row">
   <div class="col">
+
     <app-playlist-list
       [items]="playlists"
       [selectedId]="selected.id"
       (selectedIdChange)="selectPlaylist($event)"
     ></app-playlist-list>
 
-    <input
-      type="text"
-      [value]="playlists[0].name"
-      (change)="playlists[0].name = $any($event.target).value"
-    />
+    <!-- <input type="text" (keyup)=" x = $event"> -->
   </div>
 
   <div class="col" [ngSwitch]="mode">
-    <ng-template ngSwitchDefault>
-      <app-playlist-details [playlist]="selected" (edit)="editMode()"></app-playlist-details>
-      <!-- <button class="btn btn-info" >Edit</button> -->
-    </ng-template>
 
-    <ng-container *ngSwitchCase="'edit'">
-      <app-playlist-form (cancel)="cancel()" (submit)="savePlaylist($event)"></app-playlist-form>
-      <!-- <button class="btn btn-danger" >Cancel</button> -->
-    </ng-container>
+    <app-playlist-details
+      *ngSwitchDefault
+      [playlist]="selected"
+      (edit)="editMode()"
+      ></app-playlist-details>
+      
+      <app-playlist-form
+      *ngSwitchCase="'edit'"
+      [playlist]="selected"
+      (cancel)="cancel()"
+      (submit)="savePlaylist($event)"
+    ></app-playlist-form>
+
   </div>
 </div>
