@@ -10,10 +10,15 @@
   <div class="col" [ngSwitch]="mode">
     <!-- <ng-container *ngSwitchCase="''"> -->
 
-    <ng-template ngSwitchCase="details">
+    <ng-template ngSwitchDefault>
       <app-playlist-details></app-playlist-details>
       <button class="btn btn-info" (click)="editMode()">Edit</button>
     </ng-template>
+    
+    <!-- <ng-template ngSwitchCase="details">
+      <app-playlist-details></app-playlist-details>
+      <button class="btn btn-info" (click)="editMode()">Edit</button>
+    </ng-template> -->
 
     <ng-container *ngSwitchCase="'edit'">
       <app-playlist-form></app-playlist-form>
