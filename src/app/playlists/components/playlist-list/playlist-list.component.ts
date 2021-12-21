@@ -16,17 +16,16 @@ export class PlaylistListComponent implements OnInit {
 
   @Input('items') playlists: Playlist[] = []
 
-  selectedId = ''
+  @Input() selectedId = ''
 
   @Output() selectedIdChange = new EventEmitter()
 
   constructor(@Attribute('placki') niezmienny: string) { }
 
   select(id: string) {
-    this.selectedId = id
-
-    this.selectedIdChange.emit(id)
+    // this.selectedId = id
     // this.selectedIdChange.subscribe(event => ...)
+    this.selectedIdChange.emit(id)
   }
 
 

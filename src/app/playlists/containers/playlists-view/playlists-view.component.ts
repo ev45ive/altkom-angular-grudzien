@@ -28,12 +28,10 @@ export class PlaylistsViewComponent implements OnInit {
     description: 'my last playlist'
   }]
 
-  selectedId = '345'
   selected = this.playlists[2]
 
   selectPlaylist(id: string) {
     console.log(id);
-    this.selectedId = id
     this.selected = this.playlists.find(p => p.id === id)!
   }
 

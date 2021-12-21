@@ -1,12 +1,22 @@
 <div class="row">
   <div class="col">
-    <app-playlist-list 
+    <app-playlist-list
       [items]="playlists"
-      (selectedIdChange)="selectPlaylist($event)"></app-playlist-list>
-    
-    <input type="text" [value]="playlists[0].name" 
-                      (change)="playlists[0].name = $any($event.target).value" />
+      [selectedId]="selected.id"
+      (selectedIdChange)="selectPlaylist($event)"
+    ></app-playlist-list>
 
+    <app-playlist-list
+      [items]="playlists"
+      [selectedId]="selected.id"
+      (selectedIdChange)="selectPlaylist($event)"
+    ></app-playlist-list>
+
+    <input
+      type="text"
+      [value]="playlists[0].name"
+      (change)="playlists[0].name = $any($event.target).value"
+    />
   </div>
 
   <div class="col" [ngSwitch]="mode">
