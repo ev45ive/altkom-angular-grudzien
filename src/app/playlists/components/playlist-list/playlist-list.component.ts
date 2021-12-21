@@ -26,6 +26,7 @@ export class PlaylistListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // if (!this.playlists) throw new Error('Missing items')
   }
 
 }

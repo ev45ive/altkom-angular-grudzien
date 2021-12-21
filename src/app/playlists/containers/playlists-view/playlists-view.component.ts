@@ -29,6 +29,8 @@ export class PlaylistsViewComponent implements OnInit {
     description: 'my last playlist'
   }]
 
+  selected = this.playlists[1]
+
   constructor() {
   }
 
