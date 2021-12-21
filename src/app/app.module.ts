@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
 import { PlaylistsModule } from './playlists/playlists.module';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     PlaylistsModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [

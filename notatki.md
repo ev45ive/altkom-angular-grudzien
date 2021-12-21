@@ -132,3 +132,6 @@ ng g s --help
 ng g s core/services/search
 
 
+## Shared module
+
+ng g m shared -m app
