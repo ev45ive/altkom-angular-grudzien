@@ -9,10 +9,11 @@
     name="playlist_name"
     id="playlist_name"
     placeholder="Name"
-    [ngModel]="draft.name"
-    (ngModelChange)="draft.name = $event"
     #nameRef
+    [(ngModel)]="draft.name"
   />
+  <!-- [ngModel]=" formatMyData(draft.name)"
+    (ngModelChange)="draft.name = parseMyData( $event ) " -->
 
   <small id="counter" class="form-text text-muted float-end">
     {{ draft.name.length }} / 100
