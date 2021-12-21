@@ -10,7 +10,7 @@ import { Playlist } from './Playlist';
 })
 export class PlaylistsViewComponent implements OnInit {
 
-  mode: 'details' | 'edit' = 'edit'
+  mode: 'details' | 'edit' = 'details'
 
 
   playlists: Playlist[] = [{
