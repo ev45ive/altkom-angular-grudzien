@@ -1,5 +1,6 @@
 import { NgForOf, NgForOfContext, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Attribute, Component, Input, OnInit } from '@angular/core';
+import { Playlist } from '../../containers/playlists-view/Playlist';
 
 NgIf
 NgForOf
@@ -8,34 +9,21 @@ NgForOfContext  // => $implicit
 @Component({
   selector: 'app-playlist-list',
   templateUrl: './playlist-list.component.html',
-  styleUrls: ['./playlist-list.component.scss']
+  styleUrls: ['./playlist-list.component.scss'],
+  // inputs:['playlists:items']
 })
 export class PlaylistListComponent implements OnInit {
 
-  selectedId = '345'
+  @Input('items') playlists: Playlist[] = []
 
-  playlists = [{
-    id: '123',
-    name: 'Best playlist 123',
-    public: true,
-    description: 'awesome playlist'
-  }, {
-    id: '234',
-    name: 'Best playlist 234',
-    public: false,
-    description: 'my <3 playlist'
-  }, {
-    id: '345',
-    name: 'Best playlist 345',
-    public: true,
-    description: 'my last playlist'
-  }]
+  selectedId = ''
+
+  constructor(@Attribute('placki') niezmienny: string) { }
 
   select(id: string) {
     this.selectedId = id
   }
 
-  constructor() { }
 
   ngOnInit(): void {
   }
