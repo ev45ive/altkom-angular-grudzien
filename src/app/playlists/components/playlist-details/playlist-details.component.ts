@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Playlist } from '../../containers/playlists-view/Playlist';
 
 @Component({
   selector: 'app-playlist-details',
@@ -7,12 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistDetailsComponent implements OnInit {
 
-  playlist = {
-    id:'123',
-    name:'Best playlist',
-    public: true,
-    description: 'my <3 playlist'
-  }
+  // @Input('playlist') playlist!: Playlist
+  @Input() playlist!: Playlist
 
   constructor() { }
 
