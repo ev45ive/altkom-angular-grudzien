@@ -1,5 +1,6 @@
 # GIT 
-git clone https://ev45ive@bitbucket.org/ev45ive/altkom-angular-grudzien.git altkom-angular-grudzien
+cd ..
+git clone https://bitbucket.org/ev45ive/altkom-angular-grudzien.git altkom-angular-grudzien
 cd altkom-angular-grudzien
 npm install
 npm run start

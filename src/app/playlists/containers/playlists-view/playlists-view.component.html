@@ -6,16 +6,21 @@
   </div>
 
   <div class="col">
-    <div [hidden]="mode !== 'details'">
-      <app-playlist-details></app-playlist-details>
-      <button class="btn btn-info" (click)="editMode()">Edit</button>
-    </div>
     
+    <ng-template [ngIf]="mode === 'details'">
+      <div>
+        <app-playlist-details></app-playlist-details>
+        <button class="btn btn-info" (click)="editMode()">Edit</button>
+      </div>
+    </ng-template>
+
     <hr />
-    
-    <div [hidden]="mode !== 'edit'">
+
+    <ng-template [ngIf]="mode === 'edit'">
       <app-playlist-form></app-playlist-form>
       <button class="btn btn-danger" (click)="cancel()">Cancel</button>
-    </div>
+    </ng-template>
+
+
   </div>
 </div>
