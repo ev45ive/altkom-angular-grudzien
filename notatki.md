@@ -54,10 +54,10 @@ OS: win32 x64
 ng help
 ng new --help
 
-$ ng new --directory "."
+ $ ng new --directory "."
 ? What name would you like to use for the new workspace and initial project? myapp
 ? Would you like to add Angular routing? Yes
-? Which stylesheet format would you like to use? SCSS [ https://sass-lang.com/documentation/syntax#scss ]
+? Which stylesheet format would you like to use? SCSS  https://sass-lang.com/documentation/syntax#scss 
 
 ng new myapp --directory "." --package-manager npm --routing --strict --style scss
 
@@ -125,3 +125,8 @@ ng g c music/components/album-card
 ng g c music/components/search-form 
 ng g c music/components/search-results
 
+
+## Services
+ng g s --help
+<!-- ng g service core/services/search -->
+ng g s core/services/search

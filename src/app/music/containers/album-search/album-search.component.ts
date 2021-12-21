@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { mockAlbums } from 'src/app/core/mocks/albums';
+import { Component, Inject, OnInit } from '@angular/core';
+import { AlbumItemView } from 'src/app/core/model/album';
+import { SearchService } from 'src/app/core/services/search.service';
 
 
 @Component({
@@ -8,12 +9,16 @@ import { mockAlbums } from 'src/app/core/mocks/albums';
   styleUrls: ['./album-search.component.scss']
 })
 export class AlbumSearchComponent implements OnInit {
-  
-  results = mockAlbums
+  results: AlbumItemView[] = []
 
-  constructor() { }
+  constructor(
+    private service: SearchService
+  ) { }
 
-  ngOnInit(): void {
+  search(query: string) {
+    this.results = this.service.searchAlbums(query)
   }
+
+  ngOnInit(): void { }
 
 }
