@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 enum Modes { details = 'details', form = 'form' }
 
 @Component({
-  selector: 'app-playlists-view',
+  selector: 'app-playlists-view, [appPlaylistsView]',
   templateUrl: './playlists-view.component.html',
   styleUrls: ['./playlists-view.component.scss']
 })

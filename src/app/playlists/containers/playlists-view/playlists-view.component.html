@@ -5,22 +5,26 @@
     <app-playlist-list></app-playlist-list>
   </div>
 
+  <!-- Error: NG0201: No provider for TemplateRef found. Find more at https://angular.io/errors/NG0201 -->
+  <!-- <div class="col" [ngIf]="123"> -->
+
   <div class="col">
-    
-    <ng-template [ngIf]="mode === 'details'">
+    <ng-template
+      [ngIf]="mode === 'details'"
+      [ngIfThen]="detailsTplRef"
+      [ngIfElse]="formTplRef"
+    ></ng-template>
+
+    <ng-template #detailsTplRef>
       <div>
         <app-playlist-details></app-playlist-details>
         <button class="btn btn-info" (click)="editMode()">Edit</button>
       </div>
     </ng-template>
 
-    <hr />
-
-    <ng-template [ngIf]="mode === 'edit'">
+    <ng-template #formTplRef>
       <app-playlist-form></app-playlist-form>
       <button class="btn btn-danger" (click)="cancel()">Cancel</button>
     </ng-template>
-
-
   </div>
 </div>
