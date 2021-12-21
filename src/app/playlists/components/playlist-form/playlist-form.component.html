@@ -29,6 +29,7 @@
     name="playlist_public"
     id="playlist_public"
     [checked]="draft.public"
+    (input)="draft.public = $any($event.target).checked"
   />
   <label class="form-check-label" for="playlist_public"> Public </label>
 </div>
