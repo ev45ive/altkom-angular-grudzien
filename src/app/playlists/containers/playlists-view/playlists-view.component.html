@@ -9,7 +9,35 @@
   <!-- <div class="col" [ngIf]="123"> -->
 
   <div class="col">
-    <ng-template
+    <!-- <ng-template
+      [ngIf]="mode === 'details'"
+      [ngIfThen]="detailsTplRef"
+      [ngIfElse]="formTplRef"
+    ></ng-template> -->
+
+    <!-- <ng-template> -->
+    <div
+      data-placki="to na div"
+      *ngIf="mode === 'details'; then detailsTplRef; else formTplRef"
+    >
+      <!-- <app-playlist-details></app-playlist-details>
+        <button class="btn btn-info" (click)="editMode()">Edit</button> -->
+    </div>
+    <!-- </ng-template> -->
+
+    <ng-template #detailsTplRef>
+      <div>
+        <app-playlist-details></app-playlist-details>
+        <button class="btn btn-info" (click)="editMode()">Edit</button>
+      </div>
+    </ng-template>
+
+    <ng-template #formTplRef>
+      <app-playlist-form></app-playlist-form>
+      <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+    </ng-template>
+
+    <!-- <ng-template
       [ngIf]="mode === 'details'"
       [ngIfThen]="detailsTplRef"
       [ngIfElse]="formTplRef"
@@ -25,6 +53,6 @@
     <ng-template #formTplRef>
       <app-playlist-form></app-playlist-form>
       <button class="btn btn-danger" (click)="cancel()">Cancel</button>
-    </ng-template>
+    </ng-template> -->
   </div>
 </div>
