@@ -15,6 +15,7 @@ export class PlaylistFormComponent implements OnInit {
 
   @Output() cancel = new EventEmitter();
   @Output() submit = new EventEmitter();
+  // @Output() submit = new EventEmitter(/* isAsync */ true);
 
   clickCancel() { this.cancel.emit() }
   clickSave() { this.submit.emit(this.draft) }
