@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Playlist } from './Playlist';
 
 @Component({
   selector: 'app-playlists-view, [appPlaylistsView]',
   templateUrl: './playlists-view.component.html',
-  styleUrls: ['./playlists-view.component.scss']
+  styleUrls: ['./playlists-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlaylistsViewComponent implements OnInit {
 
@@ -40,6 +41,7 @@ export class PlaylistsViewComponent implements OnInit {
 
   editMode() {
     this.mode = 'edit'
+    // copy
   }
 
   cancel() {

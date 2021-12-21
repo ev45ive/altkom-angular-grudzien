@@ -1,3 +1,6 @@
+<pre>{{ playlist | json }}</pre>
+<pre>{{ draft | json }}</pre>
+
 <div class="mb-3">
   <label for="playlist_name" class="form-label">Name:</label>
   <input
@@ -6,8 +9,8 @@
     name="playlist_name"
     id="playlist_name"
     placeholder="Name"
-    [value]="playlist.name"
-    (input)="playlist.name = $any($event.target).value"
+    [value]="draft.name"
+    (input)="draft.name = $any($event.target).value"
     #nameRef
   />
 
@@ -15,7 +18,7 @@
   {{ nameRef.value.length }}
 
   <small id="counter" class="form-text text-muted float-end">
-    {{ playlist.name.length }} / 100
+    {{ draft.name.length }} / 100
   </small>
 </div>
 
@@ -25,7 +28,7 @@
     class="form-check-input"
     name="playlist_public"
     id="playlist_public"
-    [checked]="playlist.public"
+    [checked]="draft.public"
   />
   <label class="form-check-label" for="playlist_public"> Public </label>
 </div>
@@ -37,8 +40,8 @@
     name="playlist_description"
     id="playlist_description"
     rows="3"
-    [value]="playlist.description"
-    (input)="playlist.description = $any($event.target).value"
+    [value]="draft.description"
+    (input)="draft.description = $any($event.target).value"
   ></textarea>
 </div>
 

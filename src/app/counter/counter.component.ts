@@ -25,13 +25,13 @@ export class CounterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.zone.runOutsideAngular(() => {
+    // this.zone.runOutsideAngular(() => {
       setInterval(() => {
         // this.zone.run()
         this.time = (new Date()).toLocaleTimeString()
         this.cdr.detectChanges()
       }, 1000)
-    })
+    // })
   }
 
 }
