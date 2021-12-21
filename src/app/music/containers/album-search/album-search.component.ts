@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { mockAlbums } from 'src/app/core/mocks/albums';
+
 
 @Component({
   selector: 'app-album-search',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./album-search.component.scss']
 })
 export class AlbumSearchComponent implements OnInit {
+  
+  results = mockAlbums
 
   constructor() { }
 
