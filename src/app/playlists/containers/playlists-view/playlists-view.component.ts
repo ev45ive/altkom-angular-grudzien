@@ -46,6 +46,11 @@ export class PlaylistsViewComponent implements OnInit {
     this.mode = 'details'
   }
 
+  savePlaylist(draft: any) {
+    console.log('save playlist!');
+
+  }
+
   ngOnInit(): void {
   }
 

@@ -15,13 +15,13 @@
 
   <div class="col" [ngSwitch]="mode">
     <ng-template ngSwitchDefault>
-      <app-playlist-details [playlist]="selected"></app-playlist-details>
-      <!-- <button class="btn btn-info" (click)="editMode()">Edit</button> -->
+      <app-playlist-details [playlist]="selected" (edit)="editMode()"></app-playlist-details>
+      <!-- <button class="btn btn-info" >Edit</button> -->
     </ng-template>
 
     <ng-container *ngSwitchCase="'edit'">
-      <app-playlist-form></app-playlist-form>
-      <!-- <button class="btn btn-danger" (click)="cancel()">Cancel</button> -->
+      <app-playlist-form (cancel)="cancel()" (submit)="savePlaylist($event)"></app-playlist-form>
+      <!-- <button class="btn btn-danger" >Cancel</button> -->
     </ng-container>
   </div>
 </div>
