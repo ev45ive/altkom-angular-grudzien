@@ -57,9 +57,12 @@ export class PlaylistsViewComponent implements OnInit {
     this.mode = 'details'
   }
 
-  savePlaylist(draft: any) {
-    console.log('save playlist!');
-
+  savePlaylist(draft: Playlist) {
+    // console.log('save playlist!', draft);
+    const index = this.playlists.findIndex(p => p.id === draft.id)
+    this.playlists[index] = draft
+    this.selected = draft
+    this.mode = 'details'
   }
 
   ngOnInit(): void {

@@ -17,7 +17,7 @@ export class PlaylistFormComponent implements OnInit {
   @Output() submit = new EventEmitter();
 
   clickCancel() { this.cancel.emit() }
-  clickSave() { this.submit.emit(this.playlist) }
+  clickSave() { this.submit.emit(this.draft) }
 
   constructor() {
   }
