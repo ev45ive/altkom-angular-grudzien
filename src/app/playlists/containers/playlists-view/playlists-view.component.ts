@@ -59,8 +59,11 @@ export class PlaylistsViewComponent implements OnInit {
 
   savePlaylist(draft: Playlist) {
     // console.log('save playlist!', draft);
-    const index = this.playlists.findIndex(p => p.id === draft.id)
-    this.playlists[index] = draft
+    // const index = this.playlists.findIndex(p => p.id === draft.id)
+    // this.playlists[index] = draft
+    // this.playlists = [...this.playlists] // OnPush detects new Input Object!
+
+    this.playlists = this.playlists.map(p => p.id === draft.id ? draft : p)
     this.selected = draft
     this.mode = 'details'
   }
