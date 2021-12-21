@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AlbumItemView } from 'src/app/core/model/album';
 
 @Component({
   selector: 'app-search-results',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit {
+  @Input() results: AlbumItemView[] = []
+
 
   constructor() { }
 

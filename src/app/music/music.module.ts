@@ -7,6 +7,7 @@ import { AlbumSearchComponent } from './containers/album-search/album-search.com
 import { AlbumCardComponent } from './components/album-card/album-card.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MusicRoutingModule
   ]
 })

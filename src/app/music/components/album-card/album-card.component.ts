@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlbumItemView } from 'src/app/core/model/album';
 
 
@@ -9,7 +9,7 @@ import { AlbumItemView } from 'src/app/core/model/album';
 })
 export class AlbumCardComponent implements OnInit {
 
-  album!: AlbumItemView
+  @Input() album!: AlbumItemView
 
   constructor() { }
 
