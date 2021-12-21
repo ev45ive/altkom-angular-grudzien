@@ -28,6 +28,11 @@ export class PlaylistFormComponent implements OnInit {
     this.draft = { ...this.playlist }
   }
 
+  hasUnsavedChanges() {
+    return JSON.stringify(this.playlist) !== JSON.stringify(this.draft)
+  }
+
+
   @ViewChild('nameRef', { /* read: ElementRef  */ })
   nameRef!: ElementRef
 

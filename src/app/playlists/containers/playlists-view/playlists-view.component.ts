@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { PlaylistFormComponent } from '../../components/playlist-form/playlist-form.component';
 import { Playlist } from './Playlist';
 
 @Component({
@@ -31,8 +32,16 @@ export class PlaylistsViewComponent implements OnInit {
 
   selected = this.playlists[2]
 
+
+  // @ViewChild('formRef')
+  @ViewChild(PlaylistFormComponent)
+  formRef!: PlaylistFormComponent
+
+
   selectPlaylist(id: string) {
-    console.log(id);
+    if (this.formRef && this.formRef.hasUnsavedChanges()) {
+      return;
+    }
     this.selected = this.playlists.find(p => p.id === id)!
   }
 
@@ -59,11 +68,11 @@ export class PlaylistsViewComponent implements OnInit {
     // this.draft = { ...this.playlist, tracks:[...this.playlist.tracks] }
     // this.draft = JSON.parse(JSON.stringify(this.playlist))
   }
-  
+
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    
+
     // console.log('parent init', (window as any).playlist_name);
   }
 }
