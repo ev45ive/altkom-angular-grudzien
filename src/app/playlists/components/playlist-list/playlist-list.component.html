@@ -5,7 +5,8 @@
     *ngFor="let playlist of playlists; let i = index"
     [class.active]="playlist.id === selectedId"
     (click)="
-    select(playlist.id)"
+      $event.preventDefault(); 
+      select(playlist.id)"
   >
     {{ i + 1 }}. {{ playlist.name }}
   </a>
