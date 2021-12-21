@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { mockAlbums } from '../mocks/albums';
-
-// ng g s core/services/search
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   searchAlbums(query: string) {
-    return mockAlbums
+    const res = this.http.get(`assets/albums.json`, {
+      params: {}, headers: {},
+    })
+
+    return res
   }
 }

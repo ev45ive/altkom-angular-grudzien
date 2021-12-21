@@ -1,3 +1,4 @@
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { AlbumItemView } from 'src/app/core/model/album';
 import { SearchService } from 'src/app/core/services/search.service';
@@ -16,7 +17,14 @@ export class AlbumSearchComponent implements OnInit {
   ) { }
 
   search(query: string) {
-    this.results = this.service.searchAlbums(query)
+    const res = this.service.searchAlbums(query)
+
+    res.subscribe(res => {
+      console.log('odebrano', res)
+    })
+    res.subscribe(res => {
+      console.log('odebrano', res)
+    })
   }
 
   ngOnInit(): void { }
