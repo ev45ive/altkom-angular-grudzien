@@ -19,11 +19,9 @@ export class AlbumSearchComponent implements OnInit {
   search(query: string) {
     const res = this.service.searchAlbums(query)
 
-    res.subscribe(res => {
-      console.log('odebrano', res)
-    })
-    res.subscribe(res => {
-      console.log('odebrano', res)
+    res.subscribe(data => {
+      // console.log('odebrano', data)
+      this.results = data
     })
   }
 
