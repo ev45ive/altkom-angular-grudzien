@@ -3,22 +3,11 @@
     <app-playlist-list></app-playlist-list>
   </div>
 
-  <!-- https://angular.io/guide/template-syntax -->
-  <!-- https://angular.io/guide/binding-syntax -->
-  <!-- {{ }}  #  [ ]  (  )  *  -->
-
   <div class="col" [ngSwitch]="mode">
-    <!-- <ng-container *ngSwitchCase="''"> -->
-
     <ng-template ngSwitchDefault>
       <app-playlist-details></app-playlist-details>
       <button class="btn btn-info" (click)="editMode()">Edit</button>
     </ng-template>
-    
-    <!-- <ng-template ngSwitchCase="details">
-      <app-playlist-details></app-playlist-details>
-      <button class="btn btn-info" (click)="editMode()">Edit</button>
-    </ng-template> -->
 
     <ng-container *ngSwitchCase="'edit'">
       <app-playlist-form></app-playlist-form>
@@ -26,14 +15,3 @@
     </ng-container>
   </div>
 </div>
-
-<!-- <ng-template *ngIf="true" [ngIf]="true">
-  true
-</ng-template> -->
-
-<!-- <dl>
-  <ng-container *ngIf="true">
-    <dt>test</dt>
-    <dd>val</dd>
-  </ng-container>
-</dl> -->
