@@ -9,7 +9,9 @@ const routes: Routes = [
   },
   {
     path: 'music',
-    loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
+    loadChildren: () => //
+      import('./music/music.module') //
+        .then(m => m.MusicModule)
   }
 ];
 
