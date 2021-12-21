@@ -26,8 +26,7 @@
     class="form-check-input"
     name="playlist_public"
     id="playlist_public"
-    [ngModel]="draft.public"
-    (ngModelChange)="draft.public = $event"
+    [(ngModel)]="draft.public"
   />
   <label class="form-check-label" for="playlist_public"> Public </label>
 </div>
@@ -39,8 +38,7 @@
     name="playlist_description"
     id="playlist_description"
     rows="3"
-    [ngModel]="draft.description"
-    (ngModelChange)="draft.description = $event"
+    [(ngModel)]="draft.description"
   ></textarea>
 </div>
 
