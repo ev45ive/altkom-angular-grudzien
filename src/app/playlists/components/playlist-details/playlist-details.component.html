@@ -17,7 +17,7 @@
   >
     {{ playlist.public ? "Yes" : "No" }}
   </dd>
-  
+
   <dd
     [class.pl-public]="playlist.public"
     [class.pl-private]="playlist.public === false"
@@ -37,3 +37,5 @@
   <dt>Description</dt>
   <dd>{{ playlist.description }}</dd>
 </dl>
+
+<button class="btn btn-info" (click)="({})">Edit</button>

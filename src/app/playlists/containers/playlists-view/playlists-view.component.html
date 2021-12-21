@@ -6,12 +6,6 @@
       (selectedIdChange)="selectPlaylist($event)"
     ></app-playlist-list>
 
-    <app-playlist-list
-      [items]="playlists"
-      [selectedId]="selected.id"
-      (selectedIdChange)="selectPlaylist($event)"
-    ></app-playlist-list>
-
     <input
       type="text"
       [value]="playlists[0].name"
@@ -22,12 +16,12 @@
   <div class="col" [ngSwitch]="mode">
     <ng-template ngSwitchDefault>
       <app-playlist-details [playlist]="selected"></app-playlist-details>
-      <button class="btn btn-info" (click)="editMode()">Edit</button>
+      <!-- <button class="btn btn-info" (click)="editMode()">Edit</button> -->
     </ng-template>
 
     <ng-container *ngSwitchCase="'edit'">
       <app-playlist-form></app-playlist-form>
-      <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+      <!-- <button class="btn btn-danger" (click)="cancel()">Cancel</button> -->
     </ng-container>
   </div>
 </div>
