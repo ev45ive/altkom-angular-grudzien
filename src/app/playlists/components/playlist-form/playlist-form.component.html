@@ -9,13 +9,10 @@
     name="playlist_name"
     id="playlist_name"
     placeholder="Name"
-    [value]="draft.name"
-    (input)="draft.name = $any($event.target).value"
+    [ngModel]="draft.name"
+    (ngModelChange)="draft.name = $event"
     #nameRef
   />
-
-  {{ nameRef.value }}
-  {{ nameRef.value.length }}
 
   <small id="counter" class="form-text text-muted float-end">
     {{ draft.name.length }} / 100
@@ -28,8 +25,8 @@
     class="form-check-input"
     name="playlist_public"
     id="playlist_public"
-    [checked]="draft.public"
-    (input)="draft.public = $any($event.target).checked"
+    [ngModel]="draft.public"
+    (ngModelChange)="draft.public = $event"
   />
   <label class="form-check-label" for="playlist_public"> Public </label>
 </div>
@@ -41,8 +38,8 @@
     name="playlist_description"
     id="playlist_description"
     rows="3"
-    [value]="draft.description"
-    (input)="draft.description = $any($event.target).value"
+    [ngModel]="draft.description"
+    (ngModelChange)="draft.description = $event"
   ></textarea>
 </div>
 

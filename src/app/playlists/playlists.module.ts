@@ -6,6 +6,7 @@ import { PlaylistsViewComponent } from './containers/playlists-view/playlists-vi
 import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
 import { PlaylistDetailsComponent } from './components/playlist-details/playlist-details.component';
 import { PlaylistFormComponent } from './components/playlist-form/playlist-form.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { PlaylistFormComponent } from './components/playlist-form/playlist-form.
   ],
   imports: [
     CommonModule,
+    FormsModule,
     PlaylistsRoutingModule
   ],
   // exports: [
