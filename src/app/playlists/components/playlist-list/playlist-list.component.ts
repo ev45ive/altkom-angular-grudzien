@@ -12,6 +12,8 @@ NgForOfContext  // => $implicit
 })
 export class PlaylistListComponent implements OnInit {
 
+  selectedId = '123'
+
   playlists = [{
     id: '123',
     name: 'Best playlist 123',
