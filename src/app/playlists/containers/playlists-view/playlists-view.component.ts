@@ -9,7 +9,7 @@ import { Playlist } from './Playlist';
 })
 export class PlaylistsViewComponent implements OnInit {
 
-  mode: 'details' | 'edit' = 'details'
+  mode: 'details' | 'edit' = 'edit'
 
 
   playlists: Playlist[] = [{
@@ -52,8 +52,12 @@ export class PlaylistsViewComponent implements OnInit {
     console.log('save playlist!');
 
   }
-
+  
   ngOnInit(): void {
+    // this.draft = this.playlist
+    // this.draft = Object.assign({}, this.playlist)
+    // this.draft = { ...this.playlist, tracks:[...this.playlist.tracks] }
+    // this.draft = JSON.parse(JSON.stringify(this.playlist))
+    console.log('parent init', (window as any).playlist_name);
   }
-
 }

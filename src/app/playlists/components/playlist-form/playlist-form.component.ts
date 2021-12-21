@@ -33,14 +33,14 @@ export class PlaylistFormComponent implements OnInit {
     // this.draft = Object.assign({}, this.playlist)
     // this.draft = { ...this.playlist, tracks:[...this.playlist.tracks] }
     // this.draft = JSON.parse(JSON.stringify(this.playlist))
-    console.log('ngOnInit');
+    console.log('ngOnInit', (window as any).playlist_name);
   }
 
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     console.log('ngDoCheck');
   }
-  
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     console.log('ngOnDestroy');
