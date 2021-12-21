@@ -64,6 +64,6 @@ export class PlaylistsViewComponent implements OnInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     
-    console.log('parent init', (window as any).playlist_name);
+    // console.log('parent init', (window as any).playlist_name);
   }
 }

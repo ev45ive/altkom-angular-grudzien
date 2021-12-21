@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Playlist } from '../../containers/playlists-view/Playlist';
 
 @Component({
@@ -28,12 +28,21 @@ export class PlaylistFormComponent implements OnInit {
     this.draft = { ...this.playlist }
   }
 
+  @ViewChild('nameRef', { /* read: ElementRef  */ })
+  nameRef!: ElementRef
+
   ngOnInit(): void {
     // this.draft = this.playlist
     // this.draft = Object.assign({}, this.playlist)
     // this.draft = { ...this.playlist, tracks:[...this.playlist.tracks] }
     // this.draft = JSON.parse(JSON.stringify(this.playlist))
     console.log('ngOnInit', (window as any).playlist_name);
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    console.log('ngOnInit', this.nameRef);
+    this.nameRef.nativeElement.focus()
   }
 
   ngDoCheck(): void {
