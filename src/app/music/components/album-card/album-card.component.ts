@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlbumItemView } from 'src/app/core/model/album';
+
 
 @Component({
   selector: 'app-album-card',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./album-card.component.scss']
 })
 export class AlbumCardComponent implements OnInit {
+
+  album!: AlbumItemView
 
   constructor() { }
 
