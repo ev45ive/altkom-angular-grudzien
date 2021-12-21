@@ -12,7 +12,7 @@ NgForOfContext  // => $implicit
 })
 export class PlaylistListComponent implements OnInit {
 
-  selectedId = '123'
+  selectedId = '345'
 
   playlists = [{
     id: '123',
@@ -31,6 +31,9 @@ export class PlaylistListComponent implements OnInit {
     description: 'my last playlist'
   }]
 
+  select(id: string) {
+    this.selectedId = id
+  }
 
   constructor() { }
 

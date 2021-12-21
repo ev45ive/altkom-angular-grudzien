@@ -1,15 +1,24 @@
 <div class="list-group">
-  <!-- <ng-template let-playlist ngFor [ngForOf]="playlists" let-i="index">
-    <a href="#" class="list-group-item list-group-item-action">
-      {{ i + 1 }}. {{ playlist.name }}
-    </a>
-  </ng-template> -->
-
   <a
     href="#"
     class="list-group-item list-group-item-action"
     *ngFor="let playlist of playlists; let i = index"
+    [class.active]="playlist.id === selectedId"
+    (click)="
+    select(playlist.id)"
   >
     {{ i + 1 }}. {{ playlist.name }}
   </a>
 </div>
+
+<!-- <dd
+[class.active]="playlist.public"
+[class.pl-public]="playlist.public"
+[class.pl-private]="playlist.public === false"
+>
+</dd> -->
+
+<!-- <div [ngClass]="{
+  'pl-private': playlist.public != true,
+  'pl-public': playlist.public == true,
+}"></div> -->
