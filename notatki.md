@@ -114,3 +114,14 @@ https://angular.io/guide/template-syntax
 https://angular.io/guide/binding-syntax
 
   <!-- {{ }}  #  [ ]  (  )  *  -->
+
+## Album Search module
+
+ng g m music -m app --route music
+
+ng g c music/containers/album-search
+
+ng g c music/components/album-card 
+ng g c music/components/search-form 
+ng g c music/components/search-results
+
