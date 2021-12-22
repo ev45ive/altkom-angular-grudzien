@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, Observable } from 'rxjs';
 
 NgIf
 
@@ -17,19 +17,18 @@ const asyncCensor: AsyncValidatorFn = (control: AbstractControl): Observable<Val
   // return this.http.get('badwordfilterapi.com',{}).pipe(map(res => ...))
 
   return new Observable((observer) => {
-    console.log('validating');
+    // console.log('validating');
 
     const handle = setTimeout(() => {
       const result = censor(control)
-      console.log('result');
+      // console.log('result');
       observer.next(result)
       // observer.error()
       observer.complete()
     }, 2000)
 
     return () => {
-      console.log('unsubsrrive');
-      
+      // console.log('unsubsrrive');
       clearTimeout(handle)
     }
   })
@@ -82,6 +81,18 @@ export class SearchFormComponent implements OnInit {
 
   constructor() {
     (window as any).form = this.searchForm
+
+    this.searchForm.get('query')!.valueChanges.pipe(
+      // length >= 3 
+      filter(q => q.length >= 3),
+
+      // no duplicates
+      distinctUntilChanged(/* comparator */),
+
+      // after stops typing for 400ms
+      debounceTime(400)
+    )
+      .subscribe(console.log)
   }
 
 

@@ -168,3 +168,10 @@ this.formRef.form.patchValue({name: 'Best  test'})
 this.formRef.setValue({
   name: 'Best  123123', public: false, description: 'my last playlist'
 })
+
+
+## RxJS operators
+
+https://rxjs.dev/operator-decision-tree
+
+https://rxmarbles.com/#debounceTime
