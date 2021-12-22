@@ -150,3 +150,16 @@ https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
 npm i angular-oauth2-oidc --save
 
 https://github.com/manfredsteyer/angular-oauth2-oidc
+
+
+## Forms
+
+ng.getDirectives($0 )[2].form.patchValue({name: 'Best  test'})
+
+this.formRef.form.value 
+
+this.formRef.form.patchValue({name: 'Best  test'})
+
+this.formRef.setValue({
+  name: 'Best  123123', public: false, description: 'my last playlist'
+})
