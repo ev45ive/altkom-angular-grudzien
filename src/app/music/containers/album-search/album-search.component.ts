@@ -1,7 +1,7 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map, Observable, Subscription, tap } from 'rxjs';
+import { concatAll, exhaustAll, filter, map, mergeAll, Observable, Subscription, switchAll, tap } from 'rxjs';
 import { AlbumItemView } from 'src/app/core/model/album';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -33,13 +33,28 @@ export class AlbumSearchComponent implements OnInit {
         this.query = query;
         this.message = ''
         this.results = []
-      })
-    ).subscribe(query => {
-      this.service.searchAlbums(query).subscribe({
-        next: data => this.results = data,
-        error: error => this.message = error.message
-      })
+      }),
+      map(query => this.service.searchAlbums(query)),
+
+      obs => obs, //  Observable<Observable<Album[]>>
+      // mergeAll(), // subscribe all
+      // concatAll() // subsribe all, one at a time
+      // exhaustAll() // subsribe one, ignore rest // throttle
+      switchAll(), // subsribe last one, unsubscribe previous // debouce
+      obs => obs, //  Observable<Album[]>
+
+      // obs => obs, //  Observable<Observable<Album[]>>
+
+    ).subscribe({
+      next: data => this.results = data,
     })
+
+    // ).subscribe(query => {
+    //   this.service.searchAlbums(query).subscribe({
+    //     next: data => this.results = data,
+    //     error: error => this.message = error.message
+    //   })
+    // })
   }
 
   search(query: string) {
