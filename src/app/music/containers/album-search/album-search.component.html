@@ -9,7 +9,7 @@
 
 <div class="row">
   <div class="col">
-    <p class="alert alert-danger" *ngIf="message">
+    <p class="alert alert-danger" *ngIf="message | async as message">
       {{ message }}
     </p>
 
