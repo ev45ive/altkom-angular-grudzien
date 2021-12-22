@@ -13,6 +13,8 @@
       {{ message }}
     </p>
 
+    <p>Found {{ (results | async)?.length }} results.</p>
+
     <ng-container *ngIf="results | async as albums; else loaderTplRef">
       <app-search-results [results]="albums"></app-search-results>
     </ng-container>

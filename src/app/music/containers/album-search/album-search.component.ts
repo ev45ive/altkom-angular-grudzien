@@ -18,21 +18,21 @@ export class AlbumSearchComponent implements OnInit {
   message = ''
   query = ''
 
-  results = of<Album[] | null>(null)
+  // results = of<Album[] | null>(null)
 
-  // results = this.route.queryParamMap.pipe(
-  //   map(qp => qp.get('q')),
-  //   filter((q): q is string => q != ''),
-  //   tap((query) => {
-  //     this.query = query;
-  //     this.message = ''
-  //   }),
-  //   switchMap(query =>
-  //     this.service.searchAlbums(query).pipe(
-  //       startWith(null),
-  //       catchError(error => { this.message = error.message; return [] })
-  //     )),
-  // )
+  results = this.route.queryParamMap.pipe(
+    map(qp => qp.get('q')),
+    filter((q): q is string => q != ''),
+    tap((query) => {
+      this.query = query;
+      this.message = ''
+    }),
+    switchMap(query =>
+      this.service.searchAlbums(query).pipe(
+        startWith(null),
+        catchError(error => { this.message = error.message; return [] })
+      )),
+  )
 
   constructor(
     private router: Router,
@@ -44,18 +44,12 @@ export class AlbumSearchComponent implements OnInit {
   ngOnInit(): void { }
 
   search(query: string) {
-
-    this.results = this.service.searchAlbums(query).pipe(
-      startWith(null),
-      catchError(error => { this.message = error.message; return [] })
-    ) as any;
-    
-    // this.router.navigate(['.'], {
-    //   queryParams: {
-    //     q: query,
-    //   },
-    //   relativeTo: this.route
-    // })
+    this.router.navigate(['.'], {
+      queryParams: {
+        q: query,
+      },
+      relativeTo: this.route
+    })
   }
 
 
