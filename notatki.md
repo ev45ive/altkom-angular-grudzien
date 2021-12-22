@@ -175,3 +175,7 @@ this.formRef.setValue({
 https://rxjs.dev/operator-decision-tree
 
 https://rxmarbles.com/#debounceTime
+
+
+## NgRX 
+https://ngrx.io/guide/store/why
