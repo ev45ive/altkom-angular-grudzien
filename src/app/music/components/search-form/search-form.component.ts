@@ -1,20 +1,39 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 NgIf
 
 const censor: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-
   const badword = 'batman';
+
   if (String(control.value).includes(badword)) {
     return { 'censor': { badword } }
   }
   return null
-  // return {
-  //   required: true,
-  //   minlength: { requiredLength: 1231241 }
-  // }
+}
+const asyncCensor: AsyncValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
+  // return this.http.get('badwordfilterapi.com',{}).pipe(map(res => ...))
+
+  return new Observable((observer) => {
+    console.log('validating');
+
+    const handle = setTimeout(() => {
+      const result = censor(control)
+      console.log('result');
+      observer.next(result)
+      // observer.error()
+      observer.complete()
+    }, 2000)
+
+    return () => {
+      clearTimeout(handle)
+    }
+  })
+  // .subscribe({
+  //   next() { }, error() { }, complete() { }
+  // })
 }
 
 @Component({
@@ -31,11 +50,13 @@ export class SearchFormComponent implements OnInit {
 
   searchForm = new FormGroup({
     'query': new FormControl('', [
-      censor,
+      // censor,
       Validators.required,
       Validators.minLength(3),
       // Validators.requiredTrue, // checkbox
       Validators.pattern('[a-zA-Z0-9 ]*'),
+    ], [
+      asyncCensor
     ]),
     'options': new FormGroup({
       'type': new FormControl('album', []),

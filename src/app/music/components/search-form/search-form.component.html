@@ -11,6 +11,7 @@
 
     <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
+  <p *ngIf="searchForm.pending" class="float-start">Please wait ....</p>
   <p (click)="optionsOpen = !optionsOpen" class="float-end">Advanced</p>
 
   <ng-container *ngIf="searchForm.get('query') as field">
