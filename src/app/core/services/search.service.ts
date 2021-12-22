@@ -117,3 +117,18 @@ function exhaustivenessCheck(never: never): never {
 
 // p.length // Property 'length' does not exist on type 'Point'.ts(2339)
 
+
+
+let magic: any;
+
+let aMillionDOllars = magic.get().aMIllion.$dollars.now()
+aMillionDOllars.spend()
+
+// VS
+
+let sorry: unknown;
+sorry = aMillionDOllars;
+
+if (typeof sorry === 'string') {
+  sorry.toLocaleLowerCase()
+} 
