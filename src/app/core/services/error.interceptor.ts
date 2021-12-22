@@ -44,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         if (error.status === 401) {
-          // this.auth.login()
+          this.auth.login()
           // TODO: await popupLogin()
           //  request.clone({... newToken
           // return next.handle(authReq)...

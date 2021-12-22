@@ -1,12 +1,44 @@
-<div class="input-group mb-3">
-  <input
-    type="text"
-    class="form-control"
-    placeholder="Search"
-    [(ngModel)]="query"
-  />
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="submit()">
-    Search
-  </button>
-</div>
- 
+<pre>{{ searchForm.value | json }}</pre>
+
+<form [formGroup]="searchForm" (ngSubmit)="submit()">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search"
+      formControlName="query"
+    />
+
+    <!-- [formControl]="$any(searchForm.get('query'))" -->
+
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+  <p (click)="optionsOpen = !optionsOpen">Advanced</p>
+
+  <div class="form-group" *ngIf="optionsOpen" formGroupName="options">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search"
+      formControlName="type"
+    />
+
+    <div class="list-group" formArrayName="markets">
+      <div
+        class="list-group-item"
+        *ngFor="let m of markets.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="input-group">
+          <input type="text" class="form-control" formControlName="code" />
+          <span
+            class="btn close float-end btn-outline-secondary"
+            (click)="removeMarket(i)"
+            >&times;</span
+          >
+        </div>
+      </div>
+      <div class="list-group-item" (click)="addMarket()">Add</div>
+    </div>
+  </div>
+</form>
