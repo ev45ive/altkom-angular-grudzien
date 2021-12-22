@@ -25,8 +25,10 @@ export class AlbumSearchComponent implements OnInit {
     private service: SearchService
   ) { }
 
+  sub?: Subscription
+
   ngOnInit(): void {
-    this.route.queryParamMap.pipe(
+    this.sub = this.route.queryParamMap.pipe(
       map(qp => qp.get('q')),
       filter((q): q is string => q != ''),
       tap((query) => {
@@ -53,9 +55,7 @@ export class AlbumSearchComponent implements OnInit {
 
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-
+    this.sub?.unsubscribe()
   }
 
 }
