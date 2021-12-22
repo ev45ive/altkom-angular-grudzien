@@ -13,6 +13,8 @@ export class SearchFormComponent implements OnInit {
 
   constructor() { }
 
+  
+
   submit() {
     this.search.emit(this.query)
   }

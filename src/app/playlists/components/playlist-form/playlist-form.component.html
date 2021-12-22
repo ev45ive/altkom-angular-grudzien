@@ -9,14 +9,15 @@
     name="playlist_name"
     id="playlist_name"
     placeholder="Name"
-    #nameRef
+    #nameRef="ngModel"
     [(ngModel)]="draft.name"
   />
+
   <!-- [ngModel]=" formatMyData(draft.name)"
     (ngModelChange)="draft.name = parseMyData( $event ) " -->
 
   <small id="counter" class="form-text text-muted float-end">
-    {{ draft.name.length }} / 100
+    {{ nameRef.value?.length }} / 100
   </small>
 </div>
 

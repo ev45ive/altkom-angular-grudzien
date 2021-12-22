@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Playlist } from '../../containers/playlists-view/Playlist';
 
 @Component({
@@ -33,9 +34,11 @@ export class PlaylistFormComponent implements OnInit {
     return JSON.stringify(this.playlist) !== JSON.stringify(this.draft)
   }
 
-
-  @ViewChild('nameRef', { /* read: ElementRef  */ })
+  @ViewChild('nameRef', { read: ElementRef, static: false })
   nameRef!: ElementRef
+
+  @ViewChild('nameRef', { read: NgModel })
+  nameModelRef!: NgModel
 
   ngOnInit(): void {
     // this.draft = this.playlist
