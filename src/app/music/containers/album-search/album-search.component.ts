@@ -1,7 +1,7 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { filter, map, Observable, Subscription } from 'rxjs';
 import { AlbumItemView } from 'src/app/core/model/album';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -26,29 +26,30 @@ export class AlbumSearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.query = this.route.snapshot.queryParamMap.get('q') || ''
-    if (this.query) {
-      this.search(this.query)
-    }
+    // this.query = this.route.snapshot.queryParamMap.get('q') || ''
+    this.route.queryParamMap.pipe(
+      map(qp => qp.get('q')),
+      filter(q => q !== '')
+    ).subscribe(query => {
+      if (!query) { return }
+
+      this.query = query;
+      this.message = ''
+      this.results = []
+
+      this.service.searchAlbums(query).subscribe({
+        next: data => this.results = data,
+        error: error => this.message = error.message
+      })
+    })
   }
 
-
   search(query: string) {
-
     this.router.navigate(['.'], {
       queryParams: {
         q: query,
       },
       relativeTo: this.route
-    })
-
-    this.message = ''
-    this.results = []
-
-    this.service.searchAlbums(query).subscribe({
-      next: data => this.results = data,
-      error: error => this.message = error.message,
-      complete: () => console.log('completed')
     })
   }
 
