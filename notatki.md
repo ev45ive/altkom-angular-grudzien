@@ -6,6 +6,11 @@ cd altkom-angular-grudzien
 npm install
 npm run start
 
+
+git remote remove origin
+git remote add origin https://github.com/ev45ive/altkom-angular-grudzien
+git pull 
+
 ## GIT Update
 
 git pull --set-upstream origin master

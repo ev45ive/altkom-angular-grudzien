@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
@@ -14,7 +14,10 @@ export class SearchFormComponent implements OnInit {
   @Output() search = new EventEmitter<string>();
 
   searchForm = new FormGroup({
-    'query': new FormControl('batman', []),
+    'query': new FormControl('batman', [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
     'options': new FormGroup({
       'type': new FormControl('album', []),
       'markets': new FormArray([
