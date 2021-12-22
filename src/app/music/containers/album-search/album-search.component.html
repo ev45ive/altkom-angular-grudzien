@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <app-search-form
-      [query]="query"
+      [query]="(query | async) || ''"
       (search)="search($event)"
     ></app-search-form>
   </div>

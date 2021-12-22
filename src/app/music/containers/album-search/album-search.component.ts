@@ -1,7 +1,7 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, concatAll, exhaustAll, filter, map, mergeAll, Observable, of, startWith, Subscription, switchAll, switchMap, tap } from 'rxjs';
+import { catchError, concatAll, exhaustAll, filter, map, mergeAll, Observable, of, share, shareReplay, startWith, Subscription, switchAll, switchMap, tap } from 'rxjs';
 import { Album, AlbumItemView } from 'src/app/core/model/album';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -10,28 +10,22 @@ import { SearchService } from 'src/app/core/services/search.service';
   selector: 'app-album-search',
   templateUrl: './album-search.component.html',
   styleUrls: ['./album-search.component.scss'],
-  // providers:[
-  //   SearchService
-  // ]
 })
 export class AlbumSearchComponent implements OnInit {
   message = ''
-  query = ''
 
-  // results = of<Album[] | null>(null)
-
-  results = this.route.queryParamMap.pipe(
+  query = this.route.queryParamMap.pipe(
     map(qp => qp.get('q')),
-    filter((q): q is string => q != ''),
-    tap((query) => {
-      this.query = query;
-      this.message = ''
-    }),
+    filter((q): q is string => q != '')
+  )
+
+  results = this.query.pipe(
     switchMap(query =>
       this.service.searchAlbums(query).pipe(
         startWith(null),
         catchError(error => { this.message = error.message; return [] })
       )),
+    share()
   )
 
   constructor(
