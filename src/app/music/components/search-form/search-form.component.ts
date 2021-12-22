@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, Observable } from 'rxjs';
 
@@ -45,6 +45,11 @@ const asyncCensor: AsyncValidatorFn = (control: AbstractControl): Observable<Val
 export class SearchFormComponent implements OnInit {
 
   @Input() query = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.searchForm.get('query')?.setValue(this.query)
+  }
+
   optionsOpen = false
 
   @Output() search = new EventEmitter<string>();
@@ -93,8 +98,8 @@ export class SearchFormComponent implements OnInit {
       debounceTime(400)
     )
       .subscribe(console.log)
-      // todo: valid?
-      //  this.search.emit(this.searchForm.value.query)
+    // todo: valid?
+    //  this.search.emit(this.searchForm.value.query)
 
   }
 
