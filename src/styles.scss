@@ -31,9 +31,14 @@
 
 // .form-control
 
-.ng-invalid {
-  border: 1px solid red;
-}
-.ng-valid {
-  border: 1px solid green;
+.form-control {
+  &.ng-touched,
+  &.ng-dirty {
+    &.ng-invalid {
+      border: 1px solid red;
+    }
+    &.ng-valid {
+      border: 1px solid green;
+    }
+  }
 }

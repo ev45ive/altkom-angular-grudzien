@@ -17,7 +17,7 @@ export class SearchFormComponent implements OnInit {
   @Output() search = new EventEmitter<string>();
 
   searchForm = new FormGroup({
-    'query': new FormControl('batman', [
+    'query': new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       // Validators.requiredTrue, // checkbox
