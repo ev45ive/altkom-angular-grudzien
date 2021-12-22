@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { PlaylistsModule } from './playlists/playlists.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { environment } from 'src/environments/environment';
+import { mockAlbums } from './core/mocks/albums';
 
 @NgModule({
   declarations: [
@@ -13,12 +15,19 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     CoreModule,
+    PlaylistsModule,
     BrowserModule,
     AppRoutingModule,
-    PlaylistsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    environment.production ? [] : [
+      {
+        provide: 'INITIAL_RESULTS',
+        useValue: mockAlbums
+      }
+    ]
+  ],
   bootstrap: [
     // CounterComponent,
     AppComponent,

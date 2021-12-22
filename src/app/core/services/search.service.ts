@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { mockAlbums } from '../mocks/albums';
 import { HttpClient } from '@angular/common/http'
 import { AlbumItemView } from '../model/album';
 
 /// can be replaced when compiling:
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
 
-  api_url = environment.api_url
-
   constructor(
+    @Inject('INITIAL_RESULTS') private results: AlbumItemView[],
+    @Inject('API_URL') private api_url: string,
     private http: HttpClient
   ) { }
 
