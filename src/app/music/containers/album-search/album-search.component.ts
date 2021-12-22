@@ -1,8 +1,8 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, concatAll, exhaustAll, filter, map, mergeAll, Observable, startWith, Subscription, switchAll, switchMap, tap } from 'rxjs';
-import { AlbumItemView } from 'src/app/core/model/album';
+import { catchError, concatAll, exhaustAll, filter, map, mergeAll, Observable, of, startWith, Subscription, switchAll, switchMap, tap } from 'rxjs';
+import { Album, AlbumItemView } from 'src/app/core/model/album';
 import { SearchService } from 'src/app/core/services/search.service';
 
 
@@ -18,19 +18,21 @@ export class AlbumSearchComponent implements OnInit {
   message = ''
   query = ''
 
-  results = this.route.queryParamMap.pipe(
-    map(qp => qp.get('q')),
-    filter((q): q is string => q != ''),
-    tap((query) => {
-      this.query = query;
-      this.message = ''
-    }),
-    switchMap(query =>
-      this.service.searchAlbums(query).pipe(
-        startWith(null),
-        catchError(error => { this.message = error.message; return [] })
-      )),
-  )
+  results = of<Album[] | null>(null)
+
+  // results = this.route.queryParamMap.pipe(
+  //   map(qp => qp.get('q')),
+  //   filter((q): q is string => q != ''),
+  //   tap((query) => {
+  //     this.query = query;
+  //     this.message = ''
+  //   }),
+  //   switchMap(query =>
+  //     this.service.searchAlbums(query).pipe(
+  //       startWith(null),
+  //       catchError(error => { this.message = error.message; return [] })
+  //     )),
+  // )
 
   constructor(
     private router: Router,
@@ -42,12 +44,18 @@ export class AlbumSearchComponent implements OnInit {
   ngOnInit(): void { }
 
   search(query: string) {
-    this.router.navigate(['.'], {
-      queryParams: {
-        q: query,
-      },
-      relativeTo: this.route
-    })
+
+    this.results = this.service.searchAlbums(query).pipe(
+      startWith(null),
+      catchError(error => { this.message = error.message; return [] })
+    ) as any;
+    
+    // this.router.navigate(['.'], {
+    //   queryParams: {
+    //     q: query,
+    //   },
+    //   relativeTo: this.route
+    // })
   }
 
 
