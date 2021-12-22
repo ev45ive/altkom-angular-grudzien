@@ -1,8 +1,21 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
 NgIf
+
+const censor: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+
+  const badword = 'batman';
+  if (String(control.value).includes(badword)) {
+    return { 'censor': { badword } }
+  }
+  return null
+  // return {
+  //   required: true,
+  //   minlength: { requiredLength: 1231241 }
+  // }
+}
 
 @Component({
   selector: 'app-search-form',
@@ -18,6 +31,7 @@ export class SearchFormComponent implements OnInit {
 
   searchForm = new FormGroup({
     'query': new FormControl('', [
+      censor,
       Validators.required,
       Validators.minLength(3),
       // Validators.requiredTrue, // checkbox
@@ -30,7 +44,7 @@ export class SearchFormComponent implements OnInit {
           'code': new FormControl('PL', []),
         })
       ])
-    })
+    }, [])
   })
   markets = this.searchForm.get('options.markets') as FormArray
 
