@@ -21,15 +21,14 @@ export class SearchService {
   ) { }
 
   searchAlbums(query: string) {
-    // const res = this.http.get<AlbumItemView[]>(this.api_url + 'search', {
-    //   params: {
-    //     type: 'album'
-    //   },
-    //   headers: {},
-    // })
+    const res = this.http.get<AlbumItemView[]>(this.api_url + 'search', {
+      params: {
+        type: 'album'
+      },
+      headers: {},
+    })
 
-    // return res
-
-    return of(this.results)
+    return res
+    // return of(this.results)
   }
 }

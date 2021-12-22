@@ -1,5 +1,6 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { AlbumItemView } from 'src/app/core/model/album';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -17,10 +18,14 @@ export class AlbumSearchComponent implements OnInit {
   ) { }
 
   search(query: string) {
-    const res = this.service.searchAlbums(query)
+    const res: Observable<AlbumItemView[]> = this.service.searchAlbums(query)
+
+    const sub: Subscription = res.subscribe(data => {
+      this.results = data
+    })
+    sub.unsubscribe()
 
     res.subscribe(data => {
-      // console.log('odebrano', data)
       this.results = data
     })
   }
