@@ -144,3 +144,9 @@ https://logrocket.com/
 
 ## RxJS
 https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
+
+
+## OAuth
+npm i angular-oauth2-oidc --save
+
+https://github.com/manfredsteyer/angular-oauth2-oidc
