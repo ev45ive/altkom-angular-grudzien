@@ -93,6 +93,9 @@ export class SearchFormComponent implements OnInit {
       debounceTime(400)
     )
       .subscribe(console.log)
+      // todo: valid?
+      //  this.search.emit(this.searchForm.value.query)
+
   }
 
 
