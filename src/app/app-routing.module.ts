@@ -17,7 +17,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: true
+    // https://angular.io/guide/deployment#routed-apps-must-fallback-to-indexhtml
+    // useHash: true
   })],
   exports: [RouterModule]
 })
