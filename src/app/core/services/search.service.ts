@@ -32,23 +32,40 @@ export class SearchService {
         Authorization: `Bearer ${this.auth.getToken()}`
       },
     }).pipe(
-      // obs => obs,
-      // pluck('albums.items'.split('.'))
-      // pluck('albums','items')
       map(resp => resp.albums.items),
       catchError(error => {
 
         return throwError(() => new Error(error.error.error.message))
 
-        throw new Error('Unexpected error')
-        return this.http.get<AlbumItemView[]>('assets/albums.json')
-        return [this.results]
-        return [/* complete */]
-        return [[], [], []]
-        return of([])
-        return from([this.results])
+        // throw new Error('Unexpected error')
+        // return this.http.get<AlbumItemView[]>('assets/albums.json')
+        // return [this.results]
+        // return [/* complete */]
+        // return [[], [], []]
+        // return of([])
+        // return from([this.results])
       })
     )
-
   }
 }
+
+
+function parseData(data: string | number) {
+
+}
+
+
+// Structural typing (not Nominal)
+
+interface Point { x: number, y: number }
+interface Vector { x: number, y: number, length: number }
+
+let p: Point = { x: 134, y: 23 }
+let v: Vector = { x: 134, y: 23, length: 123 }
+
+p = v
+
+// v = p // Property 'length' is missing in type 'Point' but required in type 'Vector'.ts(2741)
+
+// p.length // Property 'length' does not exist on type 'Point'.ts(2339)
+
