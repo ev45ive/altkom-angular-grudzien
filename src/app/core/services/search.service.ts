@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { mockAlbums } from '../mocks/albums';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { AlbumItemView, AlbumsSearchResponse } from '../model/album';
 import { API_URL, INITIAL_RESULTS } from '../tokens';
 import { AuthService } from './auth.service';
@@ -34,36 +34,72 @@ export class SearchService {
     }).pipe(
       map(resp => resp.albums.items),
       catchError(error => {
+        if (!(error instanceof HttpErrorResponse)) {
+          throw new Error('Unexpected error')
+        }
 
-        return throwError(() => new Error(error.error.error.message))
-
-        // throw new Error('Unexpected error')
-        // return this.http.get<AlbumItemView[]>('assets/albums.json')
-        // return [this.results]
-        // return [/* complete */]
-        // return [[], [], []]
-        // return of([])
-        // return from([this.results])
+        if (!isSpotifyError(error.error)) {
+          throw new Error('Unexpected error')
+        }
+        const spotifyError = error.error.error.message
+        return throwError(() => new Error(spotifyError))
       })
     )
   }
 }
 
+interface SpotifyError {
+  error: {
+    message: string
+  }
+}
 
-function parseData(data: string | number) {
+function isSpotifyError(error: Error | SpotifyError): error is SpotifyError {
+  return 'error' in error && 'messsage' in error.error
+}
 
+// if ('error' in error) {
+//   error.error.message
+// }
+
+// Not all code paths return a value
+
+type AllowedDataTypes = string | number // | undefined 
+
+function parseData(data: AllowedDataTypes) {
+  // const num = Number(data)
+  // isNaN(num)
+
+  // Type Narrowing
+  if (typeof data === 'string') {
+    return data.toLocaleLowerCase()
+  } else if (typeof data === 'number') {
+    return data.toFixed(2)
+  } else {
+    exhaustivenessCheck(data)
+    // const _impossible: never = data
+    // throw new Error('unexpected value' + data)
+    // const x = 123 // Unreachable code detected.ts(7027)
+  }
+}
+
+function exhaustivenessCheck(never: never): never {
+  throw new Error('unexpected value' + never)
 }
 
 
+
+// (new Date() ) instanceof Date
+
 // Structural typing (not Nominal)
 
-interface Point { x: number, y: number }
-interface Vector { x: number, y: number, length: number }
+// interface Point { x: number, y: number }
+// interface Vector { x: number, y: number, length: number }
 
-let p: Point = { x: 134, y: 23 }
-let v: Vector = { x: 134, y: 23, length: 123 }
+// let p: Point = { x: 134, y: 23 }
+// let v: Vector = { x: 134, y: 23, length: 123 }
 
-p = v
+// p = v
 
 // v = p // Property 'length' is missing in type 'Point' but required in type 'Vector'.ts(2741)
 
