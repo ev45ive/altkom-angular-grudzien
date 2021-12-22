@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/playlists',
+    redirectTo: '/music/search',
   },
   {
     path: 'music',

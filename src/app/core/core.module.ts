@@ -1,11 +1,12 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { API_URL, INITIAL_RESULTS } from './tokens';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { AuthService } from './services/auth.service';
 import { ErrorInterceptor } from './services/error.interceptor';
+import { ErrorsModule } from './modules/errors/errors.module';
 
 
 // class MyBetterAwesomeHttpClient extends HttpClient { }
@@ -14,21 +15,19 @@ import { ErrorInterceptor } from './services/error.interceptor';
   declarations: [],
   imports: [
     CommonModule,
+    HttpClientXsrfModule.disable(),
     HttpClientModule,
+    ErrorsModule, // ModuleWithProviders
     OAuthModule.forRoot({
       resourceServer: {
-        sendAccessToken: false,
-        // allowedUrls: []
+        sendAccessToken: true,
+        allowedUrls: [environment.api_url]
       }
-    }) // ModuleWithProviders
+    }),
   ],
   providers: [
     //  Cannot mix multi providers and regular providers
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true
-    },
+   
     // {
     //   provide: HttpClient,
     //   useClass: MyBetterAwesomeHttpClient
@@ -62,6 +61,7 @@ import { ErrorInterceptor } from './services/error.interceptor';
 export class CoreModule {
 
   constructor(
+    @Inject(HTTP_INTERCEPTORS) inter: any,
     private auth: AuthService
   ) {
     auth.init()

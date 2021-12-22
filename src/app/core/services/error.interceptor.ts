@@ -26,9 +26,9 @@ export class ErrorInterceptor implements HttpInterceptor {
     const authReq = request.clone({
       // TODO: check if url starts with http?
       url: this.api_url + request.url,
-      setHeaders: {
-        Authorization: `Bearer ${this.auth.getToken()}`
-      }
+      // setHeaders: {
+      //   Authorization: `Bearer ${this.auth.getToken()}`
+      // }
     })
 
 
@@ -44,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         if (error.status === 401) {
-          this.auth.login()
+          // this.auth.login()
           // TODO: await popupLogin()
           //  request.clone({... newToken
           // return next.handle(authReq)...
