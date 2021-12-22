@@ -23,7 +23,7 @@ export class SearchService {
 
   searchAlbums(query: string) {
 
-    return this.http.get<AlbumsSearchResponse>(this.api_url + 'search', {
+    return this.http.get<unknown>(this.api_url + 'search', {
       params: {
         type: 'album',
         query
@@ -32,7 +32,10 @@ export class SearchService {
         Authorization: `Bearer ${this.auth.getToken()}`
       },
     }).pipe(
-      map(resp => resp.albums.items),
+      map(resp => {
+        isAlbumSearchResponse(resp)
+        return resp.albums.items
+      }),
       catchError(error => {
         if (!(error instanceof HttpErrorResponse)) {
           throw new Error('Unexpected error')
@@ -45,6 +48,15 @@ export class SearchService {
         return throwError(() => new Error(spotifyError))
       })
     )
+  }
+}
+
+// https://github.com/colinhacks/zod#parse
+//  z.object({ albums: z.object({ items: z.array() })... .parse(res)
+
+function isAlbumSearchResponse(res: any): asserts res is AlbumsSearchResponse {
+  if (!('albums' in res && 'items' in res.albums && Array.isArray(res.albums.items))) {
+    throw new Error('Unexpected error')
   }
 }
 
