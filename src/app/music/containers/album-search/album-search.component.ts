@@ -24,7 +24,7 @@ export class AlbumSearchComponent implements OnInit {
 
     this.service.searchAlbums(query).subscribe({
       next: data => {
-        this.results = data.albums.items
+        this.results = data
       },
       error: error => {
         this.message = error.error.error.message

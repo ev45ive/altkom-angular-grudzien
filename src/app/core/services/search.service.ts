@@ -3,11 +3,9 @@ import { mockAlbums } from '../mocks/albums';
 import { HttpClient } from '@angular/common/http'
 import { AlbumItemView, AlbumsSearchResponse } from '../model/album';
 import { API_URL, INITIAL_RESULTS } from '../tokens';
-import { of } from 'rxjs';
 import { AuthService } from './auth.service';
 
-/// can be replaced when compiling:
-// import { environment } from 'src/environments/environment';
+import { map, pluck } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +21,7 @@ export class SearchService {
   ) { }
 
   searchAlbums(query: string) {
-    const res = this.http.get<AlbumsSearchResponse>(this.api_url + 'search', {
+    return this.http.get<AlbumsSearchResponse>(this.api_url + 'search', {
       params: {
         type: 'album',
         query
@@ -31,9 +29,11 @@ export class SearchService {
       headers: {
         Authorization: `Bearer ${this.auth.getToken()}`
       },
-    })
-
-    return res
-    // return of(this.results)
+    }).pipe(
+      // obs => obs,
+      // pluck('albums.items'.split('.'))
+      // pluck('albums','items')
+      map(resp => resp.albums.items)
+    )
   }
 }
