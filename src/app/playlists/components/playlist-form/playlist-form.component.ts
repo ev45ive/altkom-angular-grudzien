@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { Playlist } from '../../containers/playlists-view/Playlist';
 
+
+NgForm
 @Component({
   selector: 'app-playlist-form',
   templateUrl: './playlist-form.component.html',
@@ -11,7 +13,7 @@ import { Playlist } from '../../containers/playlists-view/Playlist';
 export class PlaylistFormComponent implements OnInit {
 
   @Input() playlist!: Playlist
-  draft!: Playlist
+  // draft!: Playlist
 
 
   @Output() cancel = new EventEmitter();
@@ -19,7 +21,14 @@ export class PlaylistFormComponent implements OnInit {
   // @Output() submit = new EventEmitter(/* isAsync */ true);
 
   clickCancel() { this.cancel.emit() }
-  clickSave() { this.submit.emit(this.draft) }
+
+  clickSave(formRef: NgForm) {
+
+    this.submit.emit({
+      ...this.playlist,
+      ...formRef.value
+    })
+  }
 
   constructor() {
   }
@@ -27,11 +36,14 @@ export class PlaylistFormComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     console.log('ngOnChanges', changes);
-    this.draft = { ...this.playlist }
+    // this.draft = { ...this.playlist }
   }
 
   hasUnsavedChanges() {
-    return JSON.stringify(this.playlist) !== JSON.stringify(this.draft)
+    return JSON.stringify(this.playlist) !== JSON.stringify({
+      ...this.playlist,
+      ...this.formRef.value
+    })
   }
 
   @ViewChild('nameRef', { read: ElementRef, static: false })
@@ -39,6 +51,9 @@ export class PlaylistFormComponent implements OnInit {
 
   @ViewChild('nameRef', { read: NgModel })
   nameModelRef!: NgModel
+
+  @ViewChild(NgForm, { read: NgForm })
+  formRef!: NgForm
 
   ngOnInit(): void {
     // this.draft = this.playlist

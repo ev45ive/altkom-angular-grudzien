@@ -1,48 +1,52 @@
-<pre>{{ playlist | json }}</pre>
-<pre>{{ draft | json }}</pre>
+<form #formRef="ngForm" (ngSubmit)="clickSave(formRef)">
+  <!-- <pre>{{ playlist | json }}</pre>
+<pre>{{ draft | json }}</pre> -->
+  <pre>{{ formRef.value | json }}</pre>
+  <!-- Error: If ngModel is used within a form tag, either the name attribute must be set or the form
+    control must be defined as 'standalone' in ngModelOptions.
 
-<div class="mb-3">
-  <label for="playlist_name" class="form-label">Name:</label>
-  <input
-    type="text"
-    class="form-control"
-    name="playlist_name"
-    id="playlist_name"
-    placeholder="Name"
-    #nameRef="ngModel"
-    [(ngModel)]="draft.name"
-  />
+    Example 1: <input [(ngModel)]="person.firstName" name="first">
+    Example 2: <input [(ngModel)]="person.firstName" [ngModelOptions]="{standalone: true}"> -->
 
-  <!-- [ngModel]=" formatMyData(draft.name)"
-    (ngModelChange)="draft.name = parseMyData( $event ) " -->
+  <div class="mb-3">
+    <label for="playlist_name" class="form-label">Name:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="playlist_name"
+      placeholder="Name"
+      #nameRef="ngModel"
+      name="name"
+      [ngModel]="playlist.name"
+    />
 
-  <small id="counter" class="form-text text-muted float-end">
-    {{ nameRef.value?.length }} / 100
-  </small>
-</div>
+    <small id="counter" class="form-text text-muted float-end">
+      {{ nameRef.value?.length }} / 100
+    </small>
+  </div>
 
-<div class="form-check mb-3">
-  <input
-    type="checkbox"
-    class="form-check-input"
-    name="playlist_public"
-    id="playlist_public"
-    [(ngModel)]="draft.public"
-  />
-  <label class="form-check-label" for="playlist_public"> Public </label>
-</div>
+  <div class="form-check mb-3">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      name="public"
+      id="playlist_public"
+      [ngModel]="playlist.public"
+    />
+    <label class="form-check-label" for="playlist_public"> Public </label>
+  </div>
 
-<div class="mb-3">
-  <label for="playlist_description" class="form-label">Description</label>
-  <textarea
-    class="form-control"
-    name="playlist_description"
-    id="playlist_description"
-    rows="3"
-    [(ngModel)]="draft.description"
-  ></textarea>
-</div>
+  <div class="mb-3">
+    <label for="playlist_description" class="form-label">Description</label>
+    <textarea
+      class="form-control"
+      name="description"
+      id="playlist_description"
+      rows="3"
+      [ngModel]="playlist.description"
+    ></textarea>
+  </div>
 
-<!--  -->
-<button class="btn btn-danger" (click)="clickCancel()">Cancel</button>
-<button class="btn btn-success" (click)="clickSave()">Save</button>
+  <button class="btn btn-danger" (click)="clickCancel()">Cancel</button>
+  <button class="btn btn-success" type="submit">Save</button>
+</form>
