@@ -135,3 +135,9 @@ ng g s core/services/search
 ## Shared module
 
 ng g m shared -m app
+
+
+## Observability - Error Handler - Sentry
+https://docs.sentry.io/platforms/javascript/guides/angular/
+
+https://logrocket.com/
