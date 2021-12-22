@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { API_URL, INITIAL_RESULTS } from './tokens';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { AuthService } from './services/auth.service';
 
 
 // class MyBetterAwesomeHttpClient extends HttpClient { }
@@ -16,7 +17,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     OAuthModule.forRoot({
       resourceServer: {
         sendAccessToken: false,
-        allowedUrls: []
+        // allowedUrls: []
       }
     }) // ModuleWithProviders
   ],
@@ -51,4 +52,11 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     // },
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+
+  constructor(
+    private auth: AuthService
+  ) {
+    auth.init()
+  }
+}
