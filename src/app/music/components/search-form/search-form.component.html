@@ -9,19 +9,19 @@
       formControlName="query"
     />
 
-    <!-- [formControl]="$any(searchForm.get('query'))" -->
-
     <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
   <p (click)="optionsOpen = !optionsOpen" class="float-end">Advanced</p>
 
-  <p class="text-danger" *ngIf="searchForm.get('query')!.hasError('required')">
-    Field is required
-  </p>
-  <p class="text-danger" *ngIf="searchForm.get('query')!.hasError('minlength')">
-    Field minimum length is {{searchForm.get('query')!.getError('minlength').requiredLength}}
-  </p>
+  <ng-container *ngIf="searchForm.get('query') let field">
+    <p class="text-danger" *ngIf="field?.hasError('required')">
+      Field is required
+    </p>
 
+    <p class="text-danger" *ngIf="field?.getError('minlength') as error">
+      Field minimum length is {{ error.requiredLength }}
+    </p>
+  </ng-container>
 
   <div class="form-group mt-3" *ngIf="optionsOpen" formGroupName="options">
     <input

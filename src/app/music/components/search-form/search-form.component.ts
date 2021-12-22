@@ -1,5 +1,8 @@
+import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+
+NgIf
 
 @Component({
   selector: 'app-search-form',
