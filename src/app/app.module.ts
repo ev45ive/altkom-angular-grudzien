@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from 'src/environments/environment';
 import { mockAlbums } from './core/mocks/albums';
+import { INITIAL_RESULTS } from './core/tokens';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { mockAlbums } from './core/mocks/albums';
   providers: [
     environment.production ? [] : [
       {
-        provide: 'INITIAL_RESULTS',
+        provide: INITIAL_RESULTS,
         useValue: mockAlbums
       }
     ]
