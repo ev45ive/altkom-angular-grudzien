@@ -1,7 +1,7 @@
 <pre>{{ searchForm.value | json }}</pre>
 
 <form [formGroup]="searchForm" (ngSubmit)="submit()">
-  <div class="input-group mb-3">
+  <div class="input-group">
     <input
       type="text"
       class="form-control"
@@ -13,9 +13,17 @@
 
     <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
-  <p (click)="optionsOpen = !optionsOpen">Advanced</p>
+  <p (click)="optionsOpen = !optionsOpen" class="float-end">Advanced</p>
 
-  <div class="form-group" *ngIf="optionsOpen" formGroupName="options">
+  <p class="text-danger" *ngIf="searchForm.get('query')!.hasError('required')">
+    Field is required
+  </p>
+  <p class="text-danger" *ngIf="searchForm.get('query')!.hasError('minlength')">
+    Field minimum length is {{searchForm.get('query')!.getError('minlength').requiredLength}}
+  </p>
+
+
+  <div class="form-group mt-3" *ngIf="optionsOpen" formGroupName="options">
     <input
       type="text"
       class="form-control"

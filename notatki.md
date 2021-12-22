@@ -9,7 +9,7 @@ npm run start
 
 git remote remove origin
 git remote add origin https://github.com/ev45ive/altkom-angular-grudzien
-git pull 
+git pull --set-upstream origin master
 
 ## GIT Update
 

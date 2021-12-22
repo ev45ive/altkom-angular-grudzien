@@ -16,7 +16,9 @@ export class SearchFormComponent implements OnInit {
   searchForm = new FormGroup({
     'query': new FormControl('batman', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      // Validators.requiredTrue, // checkbox
+      Validators.pattern('[a-zA-Z0-9 ]*'),
     ]),
     'options': new FormGroup({
       'type': new FormControl('album', []),
