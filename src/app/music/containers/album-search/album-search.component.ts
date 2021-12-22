@@ -23,15 +23,9 @@ export class AlbumSearchComponent implements OnInit {
     this.results = []
 
     this.service.searchAlbums(query).subscribe({
-      next: data => {
-        this.results = data
-      },
-      error: error => {
-        this.message = error.error.error.message
-      },
-      complete() {
-        console.log('completed');
-      }
+      next: data => this.results = data,
+      error: error => this.message = error.message,
+      complete: () => console.log('completed')
     })
   }
 

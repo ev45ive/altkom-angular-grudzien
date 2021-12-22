@@ -5,7 +5,8 @@ import { AlbumItemView, AlbumsSearchResponse } from '../model/album';
 import { API_URL, INITIAL_RESULTS } from '../tokens';
 import { AuthService } from './auth.service';
 
-import { map, pluck } from 'rxjs/operators'
+import { catchError, map, pluck } from 'rxjs/operators'
+import { from, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class SearchService {
   ) { }
 
   searchAlbums(query: string) {
+
     return this.http.get<AlbumsSearchResponse>(this.api_url + 'search', {
       params: {
         type: 'album',
@@ -33,7 +35,20 @@ export class SearchService {
       // obs => obs,
       // pluck('albums.items'.split('.'))
       // pluck('albums','items')
-      map(resp => resp.albums.items)
+      map(resp => resp.albums.items),
+      catchError(error => {
+
+        return throwError(() => new Error(error.error.error.message))
+
+        throw new Error('Unexpected error')
+        return this.http.get<AlbumItemView[]>('assets/albums.json')
+        return [this.results]
+        return [/* complete */]
+        return [[], [], []]
+        return of([])
+        return from([this.results])
+      })
     )
+
   }
 }
