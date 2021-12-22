@@ -1,4 +1,4 @@
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, Inject, Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { API_URL } from '../tokens';
 
 
 // ng g interceptor core/services/error
@@ -17,11 +18,14 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
     private errorHandler: ErrorHandler,
+    @Inject(API_URL) private api_url: string,
     private auth: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     const authReq = request.clone({
+      // TODO: check if url starts with http?
+      url: this.api_url + request.url,
       setHeaders: {
         Authorization: `Bearer ${this.auth.getToken()}`
       }

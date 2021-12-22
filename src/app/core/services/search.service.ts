@@ -1,27 +1,20 @@
-import { Inject, Injectable } from '@angular/core';
-import { mockAlbums } from '../mocks/albums';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import { AlbumItemView, AlbumsSearchResponse } from '../model/album';
-import { API_URL, INITIAL_RESULTS } from '../tokens';
-import { AuthService } from './auth.service';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { AlbumsSearchResponse } from '../model/album';
 
-import { catchError, map, pluck } from 'rxjs/operators'
-import { from, of, throwError } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root',
-  // providedIn: MusicModule,
 })
 export class SearchService {
 
   constructor(
-    @Inject(INITIAL_RESULTS) private results: AlbumItemView[],
-    @Inject(API_URL) private api_url: string,
     private http: HttpClient,
   ) { }
 
   searchAlbums(query: string) {
-    return this.http.get<unknown>(this.api_url + 'search', {
+    return this.http.get<unknown>('search', {
       params: {
         type: 'album', query
       }
@@ -36,7 +29,10 @@ export class SearchService {
 
 
 function isAlbumSearchResponse(res: any): asserts res is AlbumsSearchResponse {
-  if (!('albums' in res && 'items' in res.albums && Array.isArray(res.albums.items))) {
+  if (!
+    ('albums' in res
+      && 'items' in res.albums
+      && Array.isArray(res.albums.items))) {
     throw new Error('Unexpected error')
   }
 }
