@@ -3,7 +3,7 @@
 // @import url('../...');
 
 // npm i bootstrap
-@import '~bootstrap/dist/css/bootstrap.css';
+@import "~bootstrap/dist/css/bootstrap.css";
 
 // $primary: hotpink;
 
@@ -28,3 +28,12 @@
 
 // @import "~bootstrap/scss/buttons";
 // @import "~bootstrap/scss/helpers";
+
+// .form-control
+
+.ng-invalid {
+  border: 1px solid red;
+}
+.ng-valid {
+  border: 1px solid green;
+}
