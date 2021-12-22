@@ -12,6 +12,7 @@ import { SearchService } from 'src/app/core/services/search.service';
 })
 export class AlbumSearchComponent implements OnInit {
   results: AlbumItemView[] = []
+  message = ''
 
   constructor(
     private service: SearchService
@@ -20,16 +21,25 @@ export class AlbumSearchComponent implements OnInit {
   search(query: string) {
     const res: Observable<AlbumItemView[]> = this.service.searchAlbums(query)
 
-    const sub: Subscription = res.subscribe(data => {
-      this.results = data
-    })
-    sub.unsubscribe()
-
-    res.subscribe(data => {
-      this.results = data
+    res.subscribe({
+      next: data => {
+        this.results = data
+      },
+      error: error => {
+        this.message = error.message
+      },
+      complete() {
+        console.log('completed');
+      }
     })
   }
 
   ngOnInit(): void { }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    
+  }
 
 }
