@@ -1,13 +1,28 @@
 <div class="row">
   <div class="col">
-    <app-search-form [query]="query" (search)="search($event)"></app-search-form>
+    <app-search-form
+      [query]="query"
+      (search)="search($event)"
+    ></app-search-form>
   </div>
 </div>
+
 <div class="row">
   <div class="col">
     <p class="alert alert-danger" *ngIf="message">
       {{ message }}
     </p>
-    <app-search-results [results]="results"></app-search-results>
+
+    <ng-container *ngIf="results | async as albums; else loaderTplRef">
+      <app-search-results [results]="albums"></app-search-results>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #loaderTplRef>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>

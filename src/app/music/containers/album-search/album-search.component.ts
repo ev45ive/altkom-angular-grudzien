@@ -1,7 +1,7 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, concatAll, exhaustAll, filter, map, mergeAll, Observable, Subscription, switchAll, switchMap, tap } from 'rxjs';
+import { catchError, concatAll, exhaustAll, filter, map, mergeAll, Observable, startWith, Subscription, switchAll, switchMap, tap } from 'rxjs';
 import { AlbumItemView } from 'src/app/core/model/album';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -15,9 +15,22 @@ import { SearchService } from 'src/app/core/services/search.service';
   // ]
 })
 export class AlbumSearchComponent implements OnInit {
-  results: AlbumItemView[] = []
   message = ''
   query = ''
+
+  results = this.route.queryParamMap.pipe(
+    map(qp => qp.get('q')),
+    filter((q): q is string => q != ''),
+    tap((query) => {
+      this.query = query;
+      this.message = ''
+    }),
+    switchMap(query =>
+      this.service.searchAlbums(query).pipe(
+        startWith(null),
+        catchError(error => { this.message = error.message; return [] })
+      )),
+  )
 
   constructor(
     private router: Router,
@@ -25,24 +38,8 @@ export class AlbumSearchComponent implements OnInit {
     private service: SearchService
   ) { }
 
-  sub?: Subscription
 
-  ngOnInit(): void {
-    this.sub = this.route.queryParamMap.pipe(
-      map(qp => qp.get('q')),
-      filter((q): q is string => q != ''),
-      tap((query) => {
-        this.query = query;
-        this.message = ''
-        this.results = []
-      }),
-      switchMap(query => this.service.searchAlbums(query).pipe(
-        catchError(error => { this.message = error.message; return [] })
-      )),
-    ).subscribe({
-      next: data => this.results = data,
-    })
-  }
+  ngOnInit(): void { }
 
   search(query: string) {
     this.router.navigate(['.'], {
@@ -55,7 +52,6 @@ export class AlbumSearchComponent implements OnInit {
 
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe()
   }
 
 }
