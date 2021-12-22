@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SearchService {
 
-  api_url = environment
+  api_url = environment.api_url
 
   constructor(
     private http: HttpClient
