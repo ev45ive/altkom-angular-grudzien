@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { API_URL, INITIAL_RESULTS } from './tokens';
+import { OAuthModule } from 'angular-oauth2-oidc';
+
 
 // class MyBetterAwesomeHttpClient extends HttpClient { }
 
@@ -10,7 +12,13 @@ import { API_URL, INITIAL_RESULTS } from './tokens';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        sendAccessToken: false,
+        allowedUrls: []
+      }
+    }) // ModuleWithProviders
   ],
   providers: [
     // {
